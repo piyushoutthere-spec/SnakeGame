@@ -68,6 +68,18 @@ function clearCanvas(){
 }
 document.addEventListener("keydown",D);
 function D(event){
+    if(event.key===""|| event.code==="Space"){
+        iP=!iP;
+        if(iP){
+            pbtn.textContent="Resume";
+        }
+        else{
+            pbtn.textContent="pause";
+            main();
+        }
+        event.preventDefault();
+        return;
+    } 
     const U=Y===-gridSize;
     const W=Y===gridSize;
     const R=X===gridSize;
@@ -91,7 +103,7 @@ function D(event){
     if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(event.key)>-1){
     event.preventDefault();
     } 
-}
+}    
 let APX;
 let APY;
 function randomCoord(min,max){
@@ -136,7 +148,7 @@ function moveSnake(){
             hS=score;
             localStorage.setItem("snakeHighScore",hS);
         }
-        sB.textContent="Score:"+score+"|HIGH Score:"+hS;
+        sB.textContent="Score:"+score+"|HIGH Score:"+hS+"|Length:"+s.length;
         generateApple();
     }
     else{
@@ -178,7 +190,7 @@ function main(){
     },GS);
 }
 const sB=document.createElement('div');
-sB.textContent="$core:"+score+"|High Score:"+hS;
+sB.textContent="$core:"+score+"|High Score:"+hS+"|Length:"+s.length;
 sB.style.color="#111";
 sB.style.fontFamily="Arial";
 sB.style.fontSize="29px";
@@ -200,7 +212,7 @@ btn.onclick=function(){
     GS=100;
     bgI=0;
     canvas.style.backgroundColor=bgC[0];
-    sB.textContent="Score:"+score+"|HIGH Score:"+hS;
+    sB.textContent="Score:"+score+"|HIGH Score:"+hS+"|Length:"+s.length;
     main();
 };
 Sbtn.onclick=function(){
